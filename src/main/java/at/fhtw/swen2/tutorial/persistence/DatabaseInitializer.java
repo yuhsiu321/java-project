@@ -22,18 +22,21 @@ public class DatabaseInitializer implements InitializingBean {
 
     @Override
     public void afterPropertiesSet() throws Exception {
+        tourLogRepository.deleteAll();
+        tourRepository.deleteAll();
+
         List<TourEntity> tourList = new ArrayList<>();
         tourList.add(TourEntity.builder().id(5L).name("First").tourDescription("1").from("here").to("there").build());
         tourList.add(TourEntity.builder().id(7L).name("Second").tourDescription("2").from("here").to("there").build());
         tourList.add(TourEntity.builder().id(11L).name("Third").tourDescription("3").from("here").to("there").build());
         tourList.add(TourEntity.builder().id(13L).name("Last").tourDescription("4").from("there").to("here").build());
-        tourRepository.deleteAll();
+
+        TourLogEntity first = TourLogEntity.builder().id(5L).time(12.0).comment("123456").tourEntity(tourRepository.findByName("Third")).build();
+
         tourRepository.saveAll(tourList);
-
-        TourLogEntity first = TourLogEntity.builder().id(13L).time(12.0).comment("123456").tourEntity(tourRepository.findByName("Second")).build();
-
-        tourLogRepository.deleteAll();
         tourLogRepository.save(first);
+
+
 
 
     }
