@@ -30,7 +30,6 @@ public class TourEntity {
     private Double tourDistance;
     private Integer estimatedTime;
     private String routeInformation;
-    private String sessionId;
 
     @OneToMany(mappedBy = "tourEntity")
     Set<TourLogEntity> tourLogSet;
