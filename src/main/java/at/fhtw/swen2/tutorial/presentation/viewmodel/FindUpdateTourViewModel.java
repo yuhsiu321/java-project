@@ -31,6 +31,7 @@ public class FindUpdateTourViewModel {
         Tour tour = tourService.findByName(getFindUpdateName());
 
         System.out.println(tour);
+
         return tour;
 
         //show tour detail
