@@ -15,6 +15,7 @@ import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Objects;
 import java.util.Scanner;
 
 @Component
@@ -50,15 +51,6 @@ public class CreateTourViewModel{
 
     private Double distance;
     private Integer time;
-    private String sessionId;
-
-    public String getSessionId() {
-        return sessionId;
-    }
-
-    public void setSessionId(String sessionId) {
-        this.sessionId = sessionId;
-    }
 
     private String apiKey = "vpYWl32FtXtF2BrrnpC5V94yYIqFkodG";
 
@@ -155,7 +147,19 @@ public class CreateTourViewModel{
     }
 
     public void setDistanceAndTime() throws IOException {
-        String urlString = baseUrl + "&from=" + getFrom() + "&to=" + getTo() + "&outFormat=json&routeType=pedestrian";
+        String urlString;
+        if(Objects.equals(getTransportType(), "pedestrian")) {
+            urlString = baseUrl + "&from=" + getFrom() + "&to=" + getTo() + "&outFormat=json&routeType=pedestrian";
+        } else if (Objects.equals(getTransportType(), "bicycle")) {
+            urlString = baseUrl + "&from=" + getFrom() + "&to=" + getTo() + "&outFormat=json&routeType=bicycle";
+        }else if (Objects.equals(getTransportType(), "drive(fastest)")) {
+            urlString = baseUrl + "&from=" + getFrom() + "&to=" + getTo() + "&outFormat=json&routeType=fastest";
+        }else if (Objects.equals(getTransportType(), "drive(shortest)")) {
+            urlString = baseUrl + "&from=" + getFrom() + "&to=" + getTo() + "&outFormat=json&routeType=shortest";
+        }else {
+            urlString = baseUrl + "&from=" + getFrom() + "&to=" + getTo() + "&outFormat=json&routeType=pedestrian";
+        }
+        System.out.println(urlString);
         URL url = new URL(urlString);
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
         conn.setRequestMethod("GET");
@@ -168,37 +172,21 @@ public class CreateTourViewModel{
         double totalDistance = 0.0;
         int totalTime = 0;
 
-        // Extract desired data
-        String sessionId = jsonNode.get("route").get("sessionId").asText();
-
-        this.sessionId = sessionId;
         JsonNode legsNode = jsonNode.get("route").get("legs");
         for (int i = 0; i < legsNode.size(); i++) {
             totalDistance += legsNode.get(i).get("distance").asDouble();
             totalTime += legsNode.get(i).get("time").asInt();
         }
-        //System.out.println(totalDistance);
-        //System.out.println(totalTime);
-        String imageUrl = "https://www.mapquestapi.com/staticmap/v5/map?key="+apiKey+"&size=640,480&session="+sessionId;
-
-
-        URL ImageUrl = new URL(imageUrl);
-
-        BufferedImage image = ImageIO.read(ImageUrl);
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        ImageIO.write(image, "jpg", baos);
-        byte[] imageData = baos.toByteArray();
 
         //System.out.println(imageData);
         this.distance = totalDistance;
         this.time = totalTime;
-        this.sessionId = imageData.toString();
-
+        System.out.println(time);
     }
 
     public void addNewTour() throws IOException {
         setDistanceAndTime();
-        Tour tour = Tour.builder().name(getName()).tourDescription(getTourDescription()).from(getFrom()).to(getTo()).transportType(getTransportType()).distance(getDistance()).time(getTime()).sessionId(getSessionId()).build();
+        Tour tour = Tour.builder().name(getName()).tourDescription(getTourDescription()).from(getFrom()).to(getTo()).transportType(getTransportType()).distance(getDistance()).time(getTime()).build();
         //System.out.println(tour);
         tour = tourService.addNew(tour);
         tourListViewModel.addItem(tour);

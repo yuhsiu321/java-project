@@ -18,7 +18,6 @@ public class TourMapper extends AbstractMapper<TourEntity, Tour> {
                 .transportType(entity.getTransportType())
                 .distance(entity.getTourDistance())
                 .time(entity.getEstimatedTime())
-                .sessionId(entity.getSessionId())
                 .build();
     }
 
@@ -33,7 +32,6 @@ public class TourMapper extends AbstractMapper<TourEntity, Tour> {
                 .transportType(tour.getTransportType())
                 .tourDistance(tour.getDistance())
                 .estimatedTime(tour.getTime())
-                .sessionId(tour.getSessionId())
                 .build();
     }
 

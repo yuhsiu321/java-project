@@ -15,6 +15,5 @@ public class Tour {
     private String transportType;
     private Double distance;
     private Integer time;
-    private String sessionId;
 
 }
