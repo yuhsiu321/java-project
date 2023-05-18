@@ -17,7 +17,7 @@ public class UpdateTourViewModel {
     private TourService tourService;
 
     @Autowired
-    private DeleteTourViewModel deleteTourViewModel;
+    private FindUpdateTourViewModel findUpdateTourViewModel;
     private SimpleStringProperty updateName = new SimpleStringProperty();
 
     private SimpleStringProperty tourDescription = new SimpleStringProperty();
@@ -92,12 +92,17 @@ public class UpdateTourViewModel {
 
     public void update() {
         //Tour tour = tourService.findByName(getUpdateName());
-        //System.out.println(tour);
+
 
         Tour tour = Tour.builder().name(getUpdateName()).tourDescription(getTourDescription()).from(getFrom()).to(getTo()).transportType(getTransportType()).build();
-
-        tour = tourService.updateTour(tour);
-
+        Tour oldTour = findUpdateTourViewModel.findUpdate();
+        oldTour.setName(tour.getName());
+        oldTour.setTourDescription(tour.getTourDescription());
+        oldTour.setFrom(tour.getFrom());
+        oldTour.setTo(tour.getTo());
+        oldTour.setTransportType(tour.getTransportType());
+        Tour newTour = tourService.updateTour(oldTour);
+        System.out.println(newTour);
         //update tour detail
 
     }

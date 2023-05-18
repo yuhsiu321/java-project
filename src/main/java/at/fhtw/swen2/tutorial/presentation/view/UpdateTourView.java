@@ -55,25 +55,20 @@ public class UpdateTourView extends Dialog<Void> implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
+
+        Tour tour = findUpdateTourViewModel.findUpdate();
+        nameTextField.setText(tour.getName());
+        desTextField.setText(tour.getTourDescription());
+        fromTextField.setText(tour.getFrom());
+        toTextField.setText(tour.getTo());
+        transportType.setValue(tour.getTransportType());
+
         //nameTextField.textProperty().bindBidirectional(updateTourViewModel.UpdateNameProperty());
         //desTextField.textProperty().bindBidirectional(updateTourViewModel.tourDescriptionProperty());
         //fromTextField.textProperty().bindBidirectional(updateTourViewModel.fromProperty());
         //toTextField.textProperty().bindBidirectional(updateTourViewModel.toProperty());
         //transportType.valueProperty().bindBidirectional(updateTourViewModel.transportTypeProperty());
-
-           // Tour tour = tourService.findByName(updateTourViewModel.getUpdateName());
-            // Set the retrieved values into the corresponding TextFields
-           // nameTextField.setText(tour.getName());
-            //desTextField.setText(tour.getDescription());
-            //fromTextField.setText(tour.getFrom());
-            //toTextField.setText(tour.getTo());
-            //transportType.setValue(tour.getTransportType());
-        Tour tour = findUpdateTourViewModel.findUpdate();
-        nameTextField.setText(tour.getName());
-        //desTextField.setText(tour.getDescription());
-        fromTextField.setText(tour.getFrom());
-        toTextField.setText(tour.getTo());
-        transportType.setValue(tour.getTransportType());
 
     }
 

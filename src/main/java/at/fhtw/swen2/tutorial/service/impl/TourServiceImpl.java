@@ -35,16 +35,15 @@ public class TourServiceImpl implements TourService {
     }
 
     public Tour updateTour(Tour tour){
-        if (tour == null){
-            return null;
-        }
-        tour.setName(tour.getName());
-        tour.setTourDescription(tour.getTourDescription());
-        tour.setFrom(tour.getFrom());
-        tour.setTo(tour.getTo());
-        tour.setTransportType(tour.getTransportType());
-        TourEntity tour1 = tourRepository.save(tourMapper.toEntity(tour));
-        return tourMapper.fromEntity(tour1);
+
+        //tour.setName(tour.getName());
+        //tour.setTourDescription(tour.getTourDescription());
+        //tour.setFrom(tour.getFrom());
+        //tour.setTo(tour.getTo());
+        //tour.setTransportType(tour.getTransportType());
+
+        TourEntity entity = tourRepository.save(tourMapper.toEntity(tour));
+        return tourMapper.fromEntity(entity);
     }
 
     @Override
