@@ -8,13 +8,21 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.transaction.Transactional;
+
 @SpringBootTest
+@Transactional
 class TourPersistenceTests {
 
 	@Autowired
 	private TourRepository tourRepository;
 	@Autowired
 	private TourLogRepository tourLogRepository;
+
+	@PersistenceContext
+	private EntityManager entityManager;
 
 	@Test
 	void testPersonRepository() {
@@ -26,6 +34,10 @@ class TourPersistenceTests {
 		tourLogRepository.save(second);
 		tourRepository.findAll().forEach(System.out::println);*/
 		//tourLogRepository.findAll().forEach(System.out::println);
+		// Eagerly fetch the tourLogSet collection
+		entityManager.flush();
+		entityManager.clear();
+
 		tourRepository.findAll().forEach(System.out::println);
 	}
 
