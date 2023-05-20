@@ -14,6 +14,7 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Dialog;
 import javafx.scene.control.TextField;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.tomcat.util.json.JSONParserTokenManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
@@ -73,10 +74,16 @@ public class UpdateTourView extends Dialog<Void> implements Initializable {
     }
 
     public void updateButtonAction() {
-        //update tour detail
-        //System.out.println(transportType.getValue());
-        updateTourViewModel.update();
-        //deleteTourViewModel.delete();
+   
+        StringProperty updateName = nameTextField.textProperty();
+        StringProperty updateDes = desTextField.textProperty();
+        StringProperty updateTo = toTextField.textProperty();
+        StringProperty updateFrom = fromTextField.textProperty();
+        ObjectProperty<String> updateTransportType = transportType.valueProperty();
+
+        System.out.println(updateName);
+        updateTourViewModel.update(updateName,updateDes,updateTo,updateFrom,updateTransportType);
+
 
     }
 }
