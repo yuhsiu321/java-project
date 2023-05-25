@@ -15,6 +15,8 @@ public interface TourService {
 
     Tour findByName(String name);
 
+    Tour updateTour(Tour tour);
+
     // erweitern mit parameter create new service
 
 }

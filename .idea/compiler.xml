@@ -8,6 +8,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="javafx_spring" />
+        <module name="java-project" />
         <module name="project-master" />
       </profile>
     </annotationProcessing>

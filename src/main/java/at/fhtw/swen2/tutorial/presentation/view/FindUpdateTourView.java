@@ -3,11 +3,13 @@ package at.fhtw.swen2.tutorial.presentation.view;
 import at.fhtw.swen2.tutorial.presentation.ViewManager;
 import at.fhtw.swen2.tutorial.presentation.viewmodel.FindUpdateTourViewModel;
 import at.fhtw.swen2.tutorial.presentation.viewmodel.UpdateTourViewModel;
+import at.fhtw.swen2.tutorial.service.dto.Tour;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Dialog;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -30,6 +32,19 @@ public class FindUpdateTourView extends Dialog<Void> implements Initializable {
 
     @FXML
     public TextField nameTextField;
+
+    @FXML
+    public ChoiceBox transportType;
+
+    @FXML
+    private TextField toTextField;
+
+    @FXML
+    private TextField fromTextField;
+
+
+    @FXML
+    private TextField desTextField;
     @FXML
     public Button findUpdateButton;
 
@@ -38,6 +53,7 @@ public class FindUpdateTourView extends Dialog<Void> implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
        nameTextField.textProperty().bindBidirectional(findUpdateTourViewModel.FindUpdateNameProperty());
+
     }
 
     @Autowired
@@ -53,6 +69,12 @@ public class FindUpdateTourView extends Dialog<Void> implements Initializable {
         }
 
         //show tour detail
+        //Tour tour = findUpdateTourViewModel.findUpdate();
+        //nameTextField.setText(tour.getName());
+        //desTextField.setText(tour.getDescription());
+        //fromTextField.setText(tour.getFrom());
+        //toTextField.setText(tour.getTo());
+        //transportType.setValue(tour.getTransportType());
 
     }
 

@@ -34,6 +34,18 @@ public class TourServiceImpl implements TourService {
         return tourMapper.fromEntity(entity);
     }
 
+    public Tour updateTour(Tour tour){
+
+        //tour.setName(tour.getName());
+        //tour.setTourDescription(tour.getTourDescription());
+        //tour.setFrom(tour.getFrom());
+        //tour.setTo(tour.getTo());
+        //tour.setTransportType(tour.getTransportType());
+
+        TourEntity entity = tourRepository.save(tourMapper.toEntity(tour));
+        return tourMapper.fromEntity(entity);
+    }
+
     @Override
     public void delete(String name) {
         //TourEntity entity = tourRepository.findByName(name);
