@@ -10,6 +10,10 @@ public interface TourLogService {
 
     TourLog addnew(TourLog tourLog);
 
+    void delete(String name);
+
+    TourLog findByComment(String deleteComment);
+
     //void delete(Long id);
 
 }

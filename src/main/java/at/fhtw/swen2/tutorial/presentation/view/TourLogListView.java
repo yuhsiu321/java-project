@@ -56,7 +56,7 @@ public class TourLogListView implements Initializable {
                 TourLog selectedItem = (TourLog)tableView.getSelectionModel().getSelectedItem();
                 if (selectedItem != null) {
                     // Remove selected item from data source
-                    tourLogListViewModel.deleteItem(selectedItem);
+                    tourLogListViewModel.deleteItem(selectedItem.getComment());
                     tourLogRepository.delete(tourLogRepository.findByComment(selectedItem.getComment()));
                 }
             }

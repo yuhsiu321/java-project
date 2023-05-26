@@ -8,6 +8,7 @@ import at.fhtw.swen2.tutorial.service.TourLogService;
 import at.fhtw.swen2.tutorial.service.dto.TourLog;
 import at.fhtw.swen2.tutorial.service.mapper.TourLogMapper;
 import at.fhtw.swen2.tutorial.service.mapper.TourMapper;
+import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -36,6 +37,21 @@ public class TourLogServiceImpl implements TourLogService {
         }
         TourLogEntity entity = tourLogRepository.save(tourLogMapper.toEntity(tourLog));
         return tourLogMapper.fromEntity(entity);
+    }
+
+    @Override
+    public void delete(String name) {
+        tourLogRepository.delete(tourLogRepository.findByComment(name));
+    }
+
+    @Override
+    public TourLog findByComment(String deleteComment) {
+        if(deleteComment == null){
+            return null;
+        }
+        TourLogEntity tourLog = tourLogRepository.findByComment(deleteComment);
+        Hibernate.initialize(tourLog.getTourEntity().getTourLogs());
+        return tourLogMapper.fromEntity(tourLog);
     }
 
     /*@Override

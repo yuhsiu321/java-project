@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Set;
 
 @Data
@@ -32,6 +33,6 @@ public class TourEntity {
     private String routeInformation;
 
     @OneToMany(mappedBy = "tourEntity")
-    Set<TourLogEntity> tourLogSet;
+    private List<TourLogEntity> tourLogs;
 
 }

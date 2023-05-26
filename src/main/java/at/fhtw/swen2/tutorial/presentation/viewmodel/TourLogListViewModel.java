@@ -12,6 +12,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Component
@@ -32,10 +33,22 @@ public class TourLogListViewModel {
         masterData.add(tourLog);
     }
 
-    public void deleteItem(TourLog tourLog){
+    /*public void deleteItem(TourLog tourLog){
         tourLogListItems.remove(tourLog);
         masterData.remove(tourLog);
+    }*/
+    public void deleteItem(String comment) {
+        TourLog tourLog = tourLogListItems.stream()
+                .filter(log -> log.getComment().equals(comment))
+                .findFirst()
+                .orElse(null);
+
+        if (tourLog != null) {
+            tourLogListItems.remove(tourLog);
+            masterData.remove(tourLog);
+        }
     }
+
 
     public void clearItems(){ tourLogListItems.clear(); }
 
@@ -66,5 +79,6 @@ public class TourLogListViewModel {
         th.start();
 
     }
+
 
 }
