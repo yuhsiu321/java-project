@@ -56,7 +56,7 @@ public class TourLogControlView implements Initializable {
     }
 
     private void handleUpdate() throws IOException {
-        Parent parent = viewManager.load("at/fhtw/swen2/tutorial/presentation/view/CreateTourLog");
+        Parent parent = viewManager.load("at/fhtw/swen2/tutorial/presentation/view/FindUpdateTourLog");
         Stage stage = new Stage();
         stage.setScene(new Scene(parent));
         stage.show();
@@ -70,7 +70,7 @@ public class TourLogControlView implements Initializable {
     }
 
     private void handleNewTourLog() throws IOException {
-        Parent parent = viewManager.load("at/fhtw/swen2/tutorial/presentation/view/FindUpdateTourLog");
+        Parent parent = viewManager.load("at/fhtw/swen2/tutorial/presentation/view/CreateTourLog");
         Stage stage = new Stage();
         stage.setScene(new Scene(parent));
         stage.show();

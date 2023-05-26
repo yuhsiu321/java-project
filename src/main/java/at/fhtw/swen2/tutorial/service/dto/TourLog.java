@@ -12,10 +12,10 @@ import java.sql.Time;
 @Builder
 public class TourLog {
     private Long id;
-    private Double time;
+    private String time;
     private String comment;
     private String difficulty;
-    private Double totalTime;
+    private String totalTime;
     private String rating;
     private TourEntity tourEntity;
 }

@@ -9,7 +9,10 @@ import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 @Component
@@ -20,10 +23,13 @@ public class DatabaseInitializer implements InitializingBean {
     @Autowired
     private TourLogRepository tourLogRepository;
 
+
     @Override
     public void afterPropertiesSet() throws Exception {
         tourLogRepository.deleteAll();
         tourRepository.deleteAll();
+        DateFormat formatter = new SimpleDateFormat("dd/MM/yy");
+        Calendar obj = Calendar.getInstance();
 
         List<TourEntity> tourList = new ArrayList<>();
         tourList.add(TourEntity.builder().id(5L).name("First").tourDescription("1").from("here").to("there").build());
@@ -31,9 +37,10 @@ public class DatabaseInitializer implements InitializingBean {
         tourList.add(TourEntity.builder().id(11L).name("Third").tourDescription("3").from("here").to("there").build());
         tourList.add(TourEntity.builder().id(13L).name("Last").tourDescription("4").from("there").to("here").build());
 
-        TourLogEntity first = TourLogEntity.builder().id(5L).time(12.0).comment("123456").tourEntity(tourRepository.findByName("Third")).build();
-
         tourRepository.saveAll(tourList);
+
+        TourLogEntity first = TourLogEntity.builder().id(5L).time(formatter.format(obj.getTime())).comment("1234246").tourEntity(tourRepository.findByName("Third")).build();
+
         tourLogRepository.save(first);
 
 

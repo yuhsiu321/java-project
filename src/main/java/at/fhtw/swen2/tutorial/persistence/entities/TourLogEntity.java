@@ -19,10 +19,10 @@ public class TourLogEntity {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @Column(name = "LOG_TIME")
-    private Double time;
+    private String time;
     private String comment;
     private String difficulty;
-    private Double totalTime;
+    private String totalTime;
     private String rating;
 
     @ManyToOne

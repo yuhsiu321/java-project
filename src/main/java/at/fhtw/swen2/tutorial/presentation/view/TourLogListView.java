@@ -38,10 +38,14 @@ public class TourLogListView implements Initializable {
         tableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 
 
-        TableColumn comment = new TableColumn("TourLog List");
+        TableColumn time = new TableColumn("Time");
+        time.setCellValueFactory(new PropertyValueFactory("time"));
+        TableColumn comment = new TableColumn("Comment");
         comment.setCellValueFactory(new PropertyValueFactory("comment"));
 
+        tableView.getColumns().addAll(time);
         tableView.getColumns().addAll(comment);
+
 
         dataContainer.getChildren().add(tableView);
         tourLogListViewModel.initList();

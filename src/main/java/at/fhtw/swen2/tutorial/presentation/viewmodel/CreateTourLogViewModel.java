@@ -13,6 +13,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 @Component
 public class CreateTourLogViewModel {
@@ -27,10 +30,10 @@ public class CreateTourLogViewModel {
 
     private SimpleLongProperty id = new SimpleLongProperty();
 
-    private SimpleDoubleProperty time = new SimpleDoubleProperty();
+    private String time ;
     private SimpleStringProperty comment = new SimpleStringProperty();
     private SimpleStringProperty difficulty = new SimpleStringProperty();
-    private SimpleDoubleProperty totalTime = new SimpleDoubleProperty();
+    private SimpleStringProperty totalTime = new SimpleStringProperty();
     private SimpleStringProperty rating = new SimpleStringProperty();
     private SimpleStringProperty tourName = new SimpleStringProperty();
     private TourEntity tourEntity;
@@ -71,16 +74,13 @@ public class CreateTourLogViewModel {
         this.tourLogListViewModel = tourLogListViewModel;
     }
 
-    public double getTime() {
-        return time.get();
-    }
-
-    public SimpleDoubleProperty timeProperty() {
+    public String getTime() {
         return time;
     }
 
-    public void setTime(double time) {
-        this.time.set(time);
+
+    public void setTime(String time) {
+        this.time = time;
     }
 
     public String getComment() {
@@ -107,15 +107,15 @@ public class CreateTourLogViewModel {
         this.difficulty.set(difficulty);
     }
 
-    public double getTotalTime() {
+    public String getTotalTime() {
         return totalTime.get();
     }
 
-    public SimpleDoubleProperty totalTimeProperty() {
+    public SimpleStringProperty totalTimeProperty() {
         return totalTime;
     }
 
-    public void setTotalTime(double totalTime) {
+    public void setTotalTime(String totalTime) {
         this.totalTime.set(totalTime);
     }
 
@@ -152,16 +152,17 @@ public class CreateTourLogViewModel {
     public CreateTourLogViewModel(TourLog tourLog) {
         this.tourLog = tourLog;
         this.id = new SimpleLongProperty(tourLog.getId());
-        this.time = new SimpleDoubleProperty(tourLog.getTime());
         this.comment = new SimpleStringProperty(tourLog.getComment());
         this.difficulty = new SimpleStringProperty(tourLog.getDifficulty());
         this.rating = new SimpleStringProperty(tourLog.getRating());
-        this.totalTime = new SimpleDoubleProperty(tourLog.getTotalTime());
+        this.totalTime = new SimpleStringProperty(tourLog.getTotalTime());
     }
 
     public void addNewTourLog() throws IOException {
+        DateFormat formatter = new SimpleDateFormat("dd/MM/yy");
+        Calendar obj = Calendar.getInstance();
         setTourEntity(getTourName());
-        TourLog tourLog = TourLog.builder().comment(getComment()).time(getTime()).difficulty(getDifficulty()).rating(getRating()).totalTime(getTotalTime()).tourEntity(getTourEntity()).build();
+        TourLog tourLog = TourLog.builder().comment(getComment()).time(formatter.format(obj.getTime())).difficulty(getDifficulty()).rating(getRating()).totalTime(getTotalTime()).tourEntity(getTourEntity()).build();
         //System.out.println(tour);
         tourLog = tourLogService.addnew(tourLog);
         tourLogListViewModel.addItem(tourLog);

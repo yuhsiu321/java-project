@@ -41,10 +41,11 @@
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="312.0" prefWidth="543.0">
                            <children>
                                <fx:include source="Search.fxml" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                           </children>
+                              <fx:include source="TourLogControl.fxml" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="30.0" />
+                          </children>
                           <children>
-                              <fx:include source="TourLogList.fxml" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="30.0" />
-                              <VBox layoutX="6.0" layoutY="169.0" prefHeight="200.0" prefWidth="531.0" />
+                              <fx:include source="TourLogList.fxml" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="80.0" />
+                              <VBox layoutX="6.0" layoutY="250.0" prefHeight="200.0" prefWidth="531.0" />
                           </children>
                       </AnchorPane>
                     </items>
