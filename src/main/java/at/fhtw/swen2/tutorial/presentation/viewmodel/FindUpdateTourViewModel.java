@@ -37,4 +37,5 @@ public class FindUpdateTourViewModel {
         //show tour detail
 
     }
+
 }
