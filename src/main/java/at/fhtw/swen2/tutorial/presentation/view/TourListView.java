@@ -36,7 +36,7 @@ public class TourListView implements Initializable{
     @FXML
     public TableView tableView = new TableView<>();
     @FXML
-    private VBox dataContainer;
+    public VBox dataContainer;
 
 
     @Override

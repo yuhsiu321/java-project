@@ -140,4 +140,7 @@ public class TourListViewModel {
     }
 
 
+    public void setTourListItems(ObservableList<Tour> tourListItems) {
+        this.tourListItems = tourListItems;
+    }
 }

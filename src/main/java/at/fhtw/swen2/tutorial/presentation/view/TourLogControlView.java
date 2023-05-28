@@ -7,6 +7,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -16,7 +19,11 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+
 @Component
+@NoArgsConstructor
+@AllArgsConstructor
+@Data
 @Scope("prototype")
 @Slf4j
 public class TourLogControlView implements Initializable {
@@ -55,21 +62,21 @@ public class TourLogControlView implements Initializable {
         });
     }
 
-    private void handleUpdate() throws IOException {
+    public void handleUpdate() throws IOException {
         Parent parent = viewManager.load("at/fhtw/swen2/tutorial/presentation/view/FindUpdateTourLog");
         Stage stage = new Stage();
         stage.setScene(new Scene(parent));
         stage.show();
     }
 
-    private void handleDelete() throws IOException {
+    public void handleDelete() throws IOException {
         Parent parent = viewManager.load("at/fhtw/swen2/tutorial/presentation/view/DeleteTourLog");
         Stage stage = new Stage();
         stage.setScene(new Scene(parent));
         stage.show();
     }
 
-    private void handleNewTourLog() throws IOException {
+    public void handleNewTourLog() throws IOException {
         Parent parent = viewManager.load("at/fhtw/swen2/tutorial/presentation/view/CreateTourLog");
         Stage stage = new Stage();
         stage.setScene(new Scene(parent));

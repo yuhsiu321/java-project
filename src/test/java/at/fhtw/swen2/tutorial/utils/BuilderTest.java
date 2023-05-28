@@ -7,16 +7,19 @@ import org.junit.jupiter.api.Test;
 public class BuilderTest {
 
     @Test
-    void testPersonEntityBuilder() {
-        TourEntity maxi = TourEntity.builder()
-                .name("Maxi")
-                .tourDescription("maxi@email.com")
+    void testTourEntityBuilder() {
+        TourEntity First = TourEntity.builder()
+                .name("First")
+                .tourDescription("1")
+                .from("here")
+                .to("there")
+                .transportType("")
                 .build();
     }
     @Test
-    void testPersonBuilder() {
-        Tour maxi = Tour.builder()
-                .name("Maxi")
+    void testTourBuilder() {
+        Tour First = Tour.builder()
+                .name("First")
                 .id(11L)
                 .build();
     }

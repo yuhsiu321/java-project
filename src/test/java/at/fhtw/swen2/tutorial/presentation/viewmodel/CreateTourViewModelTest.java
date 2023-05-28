@@ -1,4 +1,4 @@
-package at.fhtw.swen2.tutorial.presentation.view;
+package at.fhtw.swen2.tutorial.presentation.viewmodel;
 
 import at.fhtw.swen2.tutorial.presentation.viewmodel.CreateTourViewModel;
 import at.fhtw.swen2.tutorial.service.TourService;
@@ -45,6 +45,17 @@ public class CreateTourViewModelTest {
         createTourViewModel.setDistance(100.0);
         createTourViewModel.setTime(60);
 
+        // Call the method under test
+        createTourViewModel.addNewTour();
+
+        // Verify that the tourService's addNew method was called with the expected tour
+        verify(tourService).addNew(argThat(tour ->
+                tour.getName().equals("First") &&
+                        tour.getTourDescription().equals("1") &&
+                        tour.getFrom().equals("Here") &&
+                        tour.getTo().equals("There") &&
+                        tour.getTransportType().equals("")
+        ));
 
     }
 

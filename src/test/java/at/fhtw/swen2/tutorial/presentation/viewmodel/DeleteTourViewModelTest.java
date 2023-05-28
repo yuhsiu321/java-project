@@ -1,4 +1,4 @@
-package at.fhtw.swen2.tutorial.presentation.view;
+package at.fhtw.swen2.tutorial.presentation.viewmodel;
 
 import at.fhtw.swen2.tutorial.presentation.viewmodel.DeleteTourViewModel;
 import at.fhtw.swen2.tutorial.presentation.viewmodel.TourListViewModel;
@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 
 @SpringBootTest
@@ -29,23 +30,22 @@ public class DeleteTourViewModelTest {
         deleteTourViewModel.setDeleteName("First");
 
         // Mock the tour returned by tourService
-        Tour expectedTour = mock(Tour.class);
+        Tour expectedTour = Tour.builder()
+                .name("First")
+                .build();
         when(tourService.findByName("First")).thenReturn(expectedTour);
 
         // Call the method under test
         deleteTourViewModel.delete();
 
         // Verify that the tourListViewModel's deleteItem method was called with the expected tour
-        //verify(tourListViewModel).deleteItem(expectedTour);
+        verify(tourListViewModel).deleteItem(expectedTour);
 
         // Verify that the tourService's delete method was called with the expected tour name
         verify(tourService).delete("First");
 
-        // Add any additional assertions based on the expected behavior
-        // For example, you can assert that a certain property of the view model has been reset after deleting the tour
-         //assertEquals("First", deleteTourViewModel.getDeleteName());
+        assertEquals("First", deleteTourViewModel.getDeleteName());
 
-        // You can also assert the result of the method or perform additional verifications as needed
     }
 
 }

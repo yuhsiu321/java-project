@@ -1,4 +1,4 @@
-package at.fhtw.swen2.tutorial.presentation.view;
+package at.fhtw.swen2.tutorial.presentation.viewmodel;
 
 import at.fhtw.swen2.tutorial.presentation.viewmodel.FindUpdateTourViewModel;
 import at.fhtw.swen2.tutorial.service.TourService;

@@ -106,4 +106,8 @@ public class UpdateTourViewModel {
 
 
     }
+
+    public void setFindUpdateTourViewModel(FindUpdateTourViewModel findUpdateTourViewModel) {
+        this.findUpdateTourViewModel = findUpdateTourViewModel;
+    }
 }

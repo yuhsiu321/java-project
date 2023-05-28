@@ -1,4 +1,4 @@
-package at.fhtw.swen2.tutorial.presentation.view;
+package at.fhtw.swen2.tutorial.presentation.viewmodel;
 
 import at.fhtw.swen2.tutorial.persistence.entities.TourEntity;
 import at.fhtw.swen2.tutorial.persistence.repositories.TourRepository;
