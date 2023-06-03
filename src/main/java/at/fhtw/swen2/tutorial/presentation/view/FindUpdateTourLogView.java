@@ -1,9 +1,8 @@
 package at.fhtw.swen2.tutorial.presentation.view;
 
 import at.fhtw.swen2.tutorial.presentation.ViewManager;
+import at.fhtw.swen2.tutorial.presentation.viewmodel.FindUpdateTourLogViewModel;
 import at.fhtw.swen2.tutorial.presentation.viewmodel.FindUpdateTourViewModel;
-import at.fhtw.swen2.tutorial.presentation.viewmodel.UpdateTourViewModel;
-import at.fhtw.swen2.tutorial.service.dto.Tour;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
@@ -17,18 +16,18 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
-import java.io.IOException;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 @Component
 @Scope("prototype")
 @Slf4j
-public class FindUpdateTourView extends Dialog<Void> implements Initializable {
+public class FindUpdateTourLogView extends Dialog<Void> implements Initializable {
 
     @Autowired
-    private FindUpdateTourViewModel findUpdateTourViewModel;
+    private FindUpdateTourLogViewModel findUpdateTourLogViewModel;
 
     @FXML
     public TextField nameTextField;
@@ -36,38 +35,25 @@ public class FindUpdateTourView extends Dialog<Void> implements Initializable {
     @FXML
     public ChoiceBox transportType;
 
-
     @FXML
-    public Button findUpdateButton;
+    public Button findUpdateLogButton;
 
-
-
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-       nameTextField.textProperty().bindBidirectional(findUpdateTourViewModel.FindUpdateNameProperty());
-
-    }
 
     @Autowired
     private ViewManager viewManager;
 
-    public void findUpdateButtonAction() throws IOException {
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        nameTextField.textProperty().bindBidirectional(findUpdateTourLogViewModel.FindUpdateNameProperty());
+    }
 
-        if (findUpdateTourViewModel.findUpdate() != null) {
-            Parent parent = viewManager.load("at/fhtw/swen2/tutorial/presentation/view/UpdateTour");
+    public void findUpdateLogButtonAction() throws IOException {
+
+        if (findUpdateTourLogViewModel.findUpdate() != null) {
+            Parent parent = viewManager.load("at/fhtw/swen2/tutorial/presentation/view/UpdateTourLog");
             Stage stage = new Stage();
             stage.setScene(new Scene(parent));
             stage.show();
         }
-
-        //show tour detail
-        //Tour tour = findUpdateTourViewModel.findUpdate();
-        //nameTextField.setText(tour.getName());
-        //desTextField.setText(tour.getDescription());
-        //fromTextField.setText(tour.getFrom());
-        //toTextField.setText(tour.getTo());
-        //transportType.setValue(tour.getTransportType());
-
     }
-
 }

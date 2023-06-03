@@ -1,13 +1,10 @@
 package at.fhtw.swen2.tutorial.service.impl;
 
-import at.fhtw.swen2.tutorial.persistence.entities.TourEntity;
 import at.fhtw.swen2.tutorial.persistence.entities.TourLogEntity;
 import at.fhtw.swen2.tutorial.persistence.repositories.TourLogRepository;
-import at.fhtw.swen2.tutorial.persistence.repositories.TourRepository;
 import at.fhtw.swen2.tutorial.service.TourLogService;
 import at.fhtw.swen2.tutorial.service.dto.TourLog;
 import at.fhtw.swen2.tutorial.service.mapper.TourLogMapper;
-import at.fhtw.swen2.tutorial.service.mapper.TourMapper;
 import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -44,6 +41,8 @@ public class TourLogServiceImpl implements TourLogService {
         tourLogRepository.delete(tourLogRepository.findByComment(name));
     }
 
+
+
     @Override
     public TourLog findByComment(String deleteComment) {
         if(deleteComment == null){
@@ -53,6 +52,7 @@ public class TourLogServiceImpl implements TourLogService {
         Hibernate.initialize(tourLog.getTourEntity().getTourLogs());
         return tourLogMapper.fromEntity(tourLog);
     }
+
 
     /*@Override
     public void delete(Long id) {
