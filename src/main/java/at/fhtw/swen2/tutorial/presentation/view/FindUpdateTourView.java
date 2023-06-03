@@ -41,6 +41,8 @@ public class FindUpdateTourView extends Dialog<Void> implements Initializable {
     public Button findUpdateButton;
 
 
+    @Autowired
+    private ViewManager viewManager;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -48,8 +50,6 @@ public class FindUpdateTourView extends Dialog<Void> implements Initializable {
 
     }
 
-    @Autowired
-    private ViewManager viewManager;
 
     public void findUpdateButtonAction() throws IOException {
 

@@ -1,8 +1,10 @@
 package at.fhtw.swen2.tutorial.service.impl;
 
+import at.fhtw.swen2.tutorial.persistence.entities.TourEntity;
 import at.fhtw.swen2.tutorial.persistence.entities.TourLogEntity;
 import at.fhtw.swen2.tutorial.persistence.repositories.TourLogRepository;
 import at.fhtw.swen2.tutorial.service.TourLogService;
+import at.fhtw.swen2.tutorial.service.dto.Tour;
 import at.fhtw.swen2.tutorial.service.dto.TourLog;
 import at.fhtw.swen2.tutorial.service.mapper.TourLogMapper;
 import org.hibernate.Hibernate;
@@ -49,10 +51,15 @@ public class TourLogServiceImpl implements TourLogService {
             return null;
         }
         TourLogEntity tourLog = tourLogRepository.findByComment(deleteComment);
-        Hibernate.initialize(tourLog.getTourEntity().getTourLogs());
+        //Hibernate.initialize(tourLog.getTourEntity().getTourLogs());
         return tourLogMapper.fromEntity(tourLog);
     }
 
+    public TourLog updateTourLog(TourLog tourLog){
+
+        TourLogEntity entity = tourLogRepository.save(tourLogMapper.toEntity(tourLog));
+        return tourLogMapper.fromEntity(entity);
+    }
 
     /*@Override
     public void delete(Long id) {

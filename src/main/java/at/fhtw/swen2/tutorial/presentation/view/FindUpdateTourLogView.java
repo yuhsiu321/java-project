@@ -30,10 +30,8 @@ public class FindUpdateTourLogView extends Dialog<Void> implements Initializable
     private FindUpdateTourLogViewModel findUpdateTourLogViewModel;
 
     @FXML
-    public TextField nameTextField;
+    public TextField commentTextField;
 
-    @FXML
-    public ChoiceBox transportType;
 
     @FXML
     public Button findUpdateLogButton;
@@ -44,12 +42,12 @@ public class FindUpdateTourLogView extends Dialog<Void> implements Initializable
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        nameTextField.textProperty().bindBidirectional(findUpdateTourLogViewModel.FindUpdateNameProperty());
+        commentTextField.textProperty().bindBidirectional(findUpdateTourLogViewModel.FindUpdateCommentProperty());
     }
 
     public void findUpdateLogButtonAction() throws IOException {
 
-        if (findUpdateTourLogViewModel.findUpdate() != null) {
+        if (findUpdateTourLogViewModel.findUpdateLog() != null) {
             Parent parent = viewManager.load("at/fhtw/swen2/tutorial/presentation/view/UpdateTourLog");
             Stage stage = new Stage();
             stage.setScene(new Scene(parent));

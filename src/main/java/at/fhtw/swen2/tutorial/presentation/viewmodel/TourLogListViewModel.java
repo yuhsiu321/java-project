@@ -33,6 +33,10 @@ public class TourLogListViewModel {
         masterData.add(tourLog);
     }
 
+    public void updateItem(String comment){
+
+    }
+
     /*public void deleteItem(TourLog tourLog){
         tourLogListItems.remove(tourLog);
         masterData.remove(tourLog);

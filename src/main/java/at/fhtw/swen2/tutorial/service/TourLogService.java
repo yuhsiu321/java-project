@@ -14,6 +14,8 @@ public interface TourLogService {
 
     TourLog findByComment(String deleteComment);
 
+    TourLog updateTourLog(TourLog tourLog);
+
     //void delete(Long id);
 
 }

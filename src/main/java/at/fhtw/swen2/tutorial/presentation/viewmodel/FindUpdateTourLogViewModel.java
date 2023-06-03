@@ -5,10 +5,11 @@ import at.fhtw.swen2.tutorial.service.TourService;
 import at.fhtw.swen2.tutorial.service.dto.Tour;
 import at.fhtw.swen2.tutorial.service.dto.TourLog;
 import javafx.beans.property.SimpleStringProperty;
+import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-
+@Data
 @Component
 public class FindUpdateTourLogViewModel {
     @Autowired
@@ -18,26 +19,22 @@ public class FindUpdateTourLogViewModel {
 
     private final SimpleStringProperty findUpdateComment = new SimpleStringProperty();
 
-    public String getFindUpdateName() {
+    public String getFindUpdateComment() {
         return findUpdateComment.get();
     }
 
-    public void setFindUpdateName(String findUpdateName) {
-        this.findUpdateComment.set(findUpdateName);
-    }
 
-    public SimpleStringProperty findUpdateNameProperty() {
+
+    public SimpleStringProperty FindUpdateCommentProperty() {
         return findUpdateComment;
     }
 
-    public SimpleStringProperty FindUpdateNameProperty() {
-        return findUpdateComment;
+    public void setFindUpdateComment(String findUpdateComment) {
+        this.findUpdateComment.set(findUpdateComment);
     }
 
-    public TourLog findUpdate() {
-        TourLog tourLog = tourLogService.findByComment(getFindUpdateName());
-
-        System.out.println(tourLog);
+    public TourLog findUpdateLog() {
+        TourLog tourLog = tourLogService.findByComment(getFindUpdateComment());
 
         return tourLog;
 

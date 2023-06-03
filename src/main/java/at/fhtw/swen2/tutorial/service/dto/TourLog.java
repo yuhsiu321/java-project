@@ -18,4 +18,5 @@ public class TourLog {
     private String totalTime;
     private String rating;
     private TourEntity tourEntity;
+    private String tourName;
 }
