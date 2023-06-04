@@ -56,7 +56,7 @@ public class UpdateTourLogView extends Dialog<Void> implements Initializable {
         String tourName = tourLog.getTourEntity().getName();
         commentTextField.setText(tourLog.getComment());
         tourNameTextField.setText(tourName);
-        timeTextField.setText(tourLog.getTime());
+        timeTextField.setText(tourLog.getTotalTime());
         ratingBox.setValue(tourLog.getRating());
         difficultBox.setValue(tourLog.getDifficulty());
 

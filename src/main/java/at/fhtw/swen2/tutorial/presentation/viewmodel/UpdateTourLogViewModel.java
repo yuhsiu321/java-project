@@ -36,12 +36,12 @@ public class UpdateTourLogViewModel {
     private StringProperty difficult = new SimpleStringProperty();
 
     public void update(StringProperty updateComment, StringProperty updateTourName, StringProperty updateTime,  ObjectProperty<String> updateRating, ObjectProperty<String> updateDifficult){
-        TourLog tourLog = TourLog.builder().comment(updateComment.getValue()).tourName(updateTourName.getValue()).time(updateTime.getValue()).difficulty(updateDifficult.getValue()).rating(updateRating.getValue()).build();
+        TourLog tourLog = TourLog.builder().comment(updateComment.getValue()).tourName(updateTourName.getValue()).totalTime(updateTime.getValue()).difficulty(updateDifficult.getValue()).rating(updateRating.getValue()).build();
         //String tourName = tourLog.getTourEntity().getName();
         TourLog oldTourLog = findUpdateTourLogViewModel.findUpdateLog();
         //oldTourLog.setTourName(tourLog.getValue());
         oldTourLog.setComment(tourLog.getComment());
-        //oldTourLog.setTime(tourLog.getTime());
+        oldTourLog.setTotalTime(tourLog.getTotalTime());
         oldTourLog.setRating(tourLog.getRating());
         oldTourLog.setDifficulty(tourLog.getDifficulty());
         TourLog newTourLog = tourLogService.updateTourLog(oldTourLog);
