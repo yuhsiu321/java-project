@@ -1,8 +1,60 @@
 @startuml
 
-User -> (createUser)
-User -> (viewList)
-User -> (search)
+left to right direction
 
+actor User as User
+
+rectangle "Tour Management" {
+  User --> (Create Tour)
+  User --> (Modify Tour)
+  User --> (Delete Tour)
+  User --> (View Tour List)
+  User --> (Search Tours)
+  User --> (Generate Tour Report)
+  User --> (Generate Summarize Report)
+
+  rectangle "Tour" {
+    (Tour Attributes) as TourAttributes
+  }
+
+  rectangle "Tour Log Management" {
+    User --> (Create Tour Log)
+    User --> (Modify Tour Log)
+    User --> (Delete Tour Log)
+    User --> (View Tour Log List)
+  }
+
+  rectangle "Tour Log" {
+    (Date/Time)
+    (Comment)
+    (Difficulty)
+    (Total Time)
+    (Rating)
+  }
+
+  TourAttributes --> (Validate User Input)
+  TourAttributes --> (Compute Popularity)
+  TourAttributes --> (Compute Child-Friendliness)
+  TourAttributes --> (Full-Text Search)
+
+  (Create Tour) --> TourAttributes
+  (Modify Tour) --> TourAttributes
+  (Generate Tour Report) --> TourAttributes
+
+  (Create Tour Log) --> "Tour"
+  (Modify Tour Log) --> "Tour"
+  (Generate Tour Report) --> "Tour"
+  (Generate Summarize Report) --> "Tour"
+}
+
+rectangle "External APIs" {
+  (MapQuest Directions API)
+  (MapQuest Static Map API)
+}
+
+TourAttributes --> (Retrieve Image, Distance, Time) : REST Request
+(MapQuest Directions API) --> (Retrieve Image, Distance, Time)
+(MapQuest Static Map API) --> (Retrieve Image, Distance, Time)
 
 @enduml
+
