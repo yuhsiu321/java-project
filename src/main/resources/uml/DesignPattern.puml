@@ -1,0 +1,51 @@
+@startuml
+
+class Subject {
+  + attach(observer: Observer): void
+  + detach(observer: Observer): void
+  + notify(): void
+  + createTour(): void
+  + modifyTour(): void
+  + deleteTour(): void
+  + addTourLog(): void
+}
+
+interface Observer {
+  + update(): void
+}
+
+class User implements Observer {
+  + update(): void
+}
+
+class Tour {
+  - name: String
+  - description: String
+  - from: String
+  - to: String
+  - transportType: String
+  - distance: double
+  - estimatedTime: double
+  - routeInformation: String
+  - tourLogs: List<TourLog>
+  + createTour(): void
+  + modifyTour(): void
+  + deleteTour(): void
+  + addTourLog(): void
+}
+
+class TourLog {
+  - dateTime: Date
+  - comment: String
+  - difficulty: String
+  - totalTime: double
+  - rating: int
+}
+
+Subject "1" --> "*" Observer
+Subject "1" --> "1" Tour : Manages
+Tour "0..*" --> "1..*" TourLog : Has
+TourLog "*" --> "1" Tour : Belongs to
+User "1" --> "1" Subject : Observes
+
+@enduml
